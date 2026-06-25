@@ -216,31 +216,7 @@ View all transactions associated with accounts.
 * UPI Integration
 * Credit Card Services
 
----
 
-## Screenshots
-
-### Home Page
-
-Modern banking landing page with service information and navigation.
-
-### Dashboard
-
-Dedicated dashboard for banking operations.
-
-### Create Account
-
-Customer account creation interface.
-
-### Deposit & Withdraw
-
-Secure banking transaction pages.
-
-### Transaction History
-
-Detailed transaction records with timestamps.
-
----
 
 ## Learning Objectives
 
@@ -256,18 +232,3 @@ This project demonstrates:
 
 ---
 
-## Author
-
-Developed by: Chakravarthy Atipamula
-
-Role: Python Developer
-
-Experience: Python, Flask, Django, SQLite, HTML, CSS, JavaScript
-
----
-
-## License
-
-This project is intended for educational, learning, and portfolio purposes.
-
-© 2026 Union Bank Management System. All Rights Reserved.
