@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Union Bank{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {% if session.get('user_id') %}
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Union Bank Logo" class="logo-img">
+            </div>
+            <h1 class="nav-title">UNION BANK</h1>
+            <nav class="nav-menu" id="navMenu">
+                <a href="{{ url_for('index') }}" class="nav-link {% if request.endpoint == 'index' %}active{% endif %}">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="{{ url_for('account_page') }}" class="nav-link {% if request.endpoint == 'account_page' %}active{% endif %}">
+                    <i class="fas fa-user"></i> Account Details
+                </a>
+                <a href="{{ url_for('transactions_page') }}" class="nav-link {% if request.endpoint == 'transactions_page' %}active{% endif %}">
+                    <i class="fas fa-history"></i> Transactions
+                </a>
+                <span class="nav-user">
+                    <i class="fas fa-user-circle"></i> {{ session.get('fullname', session.get('username')) }}
+                </span>
+                <a href="{{ url_for('logout') }}" class="nav-link nav-logout" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+                <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+    {% endif %}
+
+    <main class="main-content {% block main_class %}{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% if session.get('user_id') %}
+    <footer class="footer">
+        <p>&copy; 2026 Union Bank. All rights reserved. | Secure Banking Services</p>
+    </footer>
+    {% endif %}
+
+    <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Confirmation Modal -->
+    <div id="confirmModal" class="modal-overlay hidden" aria-hidden="true">
+        <div class="modal-card">
+            <div class="modal-header">
+                <i class="fas fa-exclamation-circle"></i>
+                <h3 id="confirmModalTitle">Confirm Action</h3>
+            </div>
+            <p id="confirmModalMessage" class="modal-message"></p>
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline" id="confirmModalCancel">Cancel</button>
+                <button type="button" class="btn btn-primary" id="confirmModalOk">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageLoader" class="page-loader hidden">
+        <div class="loader-spinner"></div>
+        <span>Processing...</span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

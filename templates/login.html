@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Union Bank - Login{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block main_class %}auth-main{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card glass-card animate-fade-in">
+        <div class="auth-header">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Union Bank" class="auth-logo">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your Union Bank account</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                <i class="fas fa-{% if category == 'success' %}check-circle{% elif category == 'error' %}times-circle{% else %}info-circle{% endif %}"></i>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('login') }}" class="bank-form auth-form" novalidate>
+            <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+            <div class="form-group">
+                <label for="identifier"><i class="fas fa-user"></i> Username or Email</label>
+                <input type="text" id="identifier" name="identifier" placeholder="Enter username or email" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <div class="password-field">
+                    <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
+                    <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-row-between">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="remember" value="1">
+                    <span>Remember Me</span>
+                </label>
+                <a href="{{ url_for('forgot_password') }}" class="auth-link">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </form>
+
+        <p class="auth-footer-text">
+            Don't have an account?
+            <a href="{{ url_for('register') }}" class="auth-link">Register here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

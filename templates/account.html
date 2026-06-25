@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Union Bank - Account Details{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h2>Account Details</h2>
+    <p>Search and view your account information</p>
+</div>
+
+<div class="single-card-container">
+    <div class="glass-card">
+        <div class="card-header">
+            <i class="fas fa-search card-icon"></i>
+            <h3>Search Account</h3>
+        </div>
+        <form id="searchAccountForm" class="bank-form" novalidate>
+            <div class="form-group">
+                <label for="search_account"><i class="fas fa-hashtag"></i> Account Number</label>
+                <input type="text" id="search_account" name="account_number" placeholder="Enter account number" required>
+                <span class="error-msg" id="searchAccountError"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i> Search Account
+            </button>
+        </form>
+    </div>
+
+    <div id="accountDetails" class="glass-card account-details-card hidden">
+        <div class="card-header">
+            <i class="fas fa-id-card card-icon"></i>
+            <h3>Account Information</h3>
+        </div>
+        <div class="details-grid">
+            <div class="detail-item">
+                <span class="detail-label"><i class="fas fa-user"></i> Account Holder Name</span>
+                <span class="detail-value" id="detailName">-</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label"><i class="fas fa-phone"></i> Phone Number</span>
+                <span class="detail-value" id="detailPhone">-</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label"><i class="fas fa-hashtag"></i> Account Number</span>
+                <span class="detail-value" id="detailAccountNumber">-</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label"><i class="fas fa-id-badge"></i> Customer ID</span>
+                <span class="detail-value" id="detailCustomerId">-</span>
+            </div>
+            <div class="detail-item highlight">
+                <span class="detail-label"><i class="fas fa-wallet"></i> Current Balance</span>
+                <span class="detail-value balance-value" id="detailBalance">-</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label"><i class="fas fa-calendar"></i> Account Creation Date</span>
+                <span class="detail-value" id="detailCreatedAt">-</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

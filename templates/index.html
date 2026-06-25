@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Union Bank - Home{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h2>Welcome to Union Bank</h2>
+    <p>Secure, reliable banking services for all your financial needs</p>
+</div>
+
+<div class="cards-grid">
+    <div class="glass-card">
+        <div class="card-header">
+            <i class="fas fa-user-plus card-icon"></i>
+            <h3>Create Account</h3>
+        </div>
+        <form id="createAccountForm" class="bank-form" novalidate>
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> Account Holder Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter full name" required>
+                <span class="error-msg" id="nameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit phone number" maxlength="10" required>
+                <span class="error-msg" id="phoneError"></span>
+            </div>
+            <div class="form-group">
+                <label for="address"><i class="fas fa-map-marker-alt"></i> Address</label>
+                <textarea id="address" name="address" placeholder="Enter your address" rows="2" required></textarea>
+                <span class="error-msg" id="addressError"></span>
+            </div>
+            <div class="form-group">
+                <label for="initial_deposit"><i class="fas fa-rupee-sign"></i> Initial Deposit (₹)</label>
+                <input type="number" id="initial_deposit" name="initial_deposit" placeholder="0.00" min="0" step="0.01" value="0">
+                <span class="error-msg" id="depositInitError"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-check-circle"></i> Create Account
+            </button>
+        </form>
+        <div id="createAccountResult" class="result-box hidden"></div>
+    </div>
+
+    <div class="glass-card">
+        <div class="card-header">
+            <i class="fas fa-arrow-down card-icon deposit-icon"></i>
+            <h3>Deposit Amount</h3>
+        </div>
+        <form id="depositForm" class="bank-form" novalidate>
+            <div class="form-group">
+                <label for="deposit_account"><i class="fas fa-hashtag"></i> Account Number</label>
+                <input type="text" id="deposit_account" name="account_number" placeholder="Enter account number" required>
+                <span class="error-msg" id="depositAccountError"></span>
+            </div>
+            <div class="form-group">
+                <label for="deposit_amount"><i class="fas fa-rupee-sign"></i> Deposit Amount (₹)</label>
+                <input type="number" id="deposit_amount" name="amount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                <span class="error-msg" id="depositAmountError"></span>
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-plus-circle"></i> Deposit
+            </button>
+        </form>
+        <div id="depositResult" class="result-box hidden"></div>
+    </div>
+
+    <div class="glass-card">
+        <div class="card-header">
+            <i class="fas fa-arrow-up card-icon withdraw-icon"></i>
+            <h3>Withdraw Amount</h3>
+        </div>
+        <form id="withdrawForm" class="bank-form" novalidate>
+            <div class="form-group">
+                <label for="withdraw_account"><i class="fas fa-hashtag"></i> Account Number</label>
+                <input type="text" id="withdraw_account" name="account_number" placeholder="Enter account number" required>
+                <span class="error-msg" id="withdrawAccountError"></span>
+            </div>
+            <div class="form-group">
+                <label for="withdraw_amount"><i class="fas fa-rupee-sign"></i> Withdraw Amount (₹)</label>
+                <input type="number" id="withdraw_amount" name="amount" placeholder="Enter amount" min="0.01" step="0.01" required>
+                <span class="error-msg" id="withdrawAmountError"></span>
+            </div>
+            <button type="submit" class="btn btn-warning" id="withdrawSubmitBtn">
+                <i class="fas fa-minus-circle"></i> Withdraw
+            </button>
+        </form>
+        <div id="withdrawResult" class="result-box hidden"></div>
+    </div>
+</div>
+{% endblock %}

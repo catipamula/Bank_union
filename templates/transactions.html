@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Union Bank - Transaction History{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <h2>Transaction History</h2>
+    <p>View all banking transactions across accounts</p>
+</div>
+
+<div class="single-card-container">
+    <div class="glass-card transactions-card">
+        <div class="card-header">
+            <i class="fas fa-list-alt card-icon"></i>
+            <h3>All Transactions</h3>
+            <button class="btn btn-sm btn-primary" id="refreshTransactions">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+        </div>
+
+        <div id="transactionsLoading" class="loading-state">
+            <i class="fas fa-spinner fa-spin"></i> Loading transactions...
+        </div>
+
+        <div id="transactionsEmpty" class="empty-state hidden">
+            <i class="fas fa-inbox"></i>
+            <p>No transactions found. Create an account to get started.</p>
+        </div>
+
+        <div id="transactionsTableWrapper" class="table-wrapper hidden">
+            <table class="transactions-table" id="transactionsTable">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-hashtag"></i> Transaction ID</th>
+                        <th><i class="fas fa-credit-card"></i> Account Number</th>
+                        <th><i class="fas fa-tag"></i> Transaction Type</th>
+                        <th><i class="fas fa-rupee-sign"></i> Amount</th>
+                        <th><i class="fas fa-clock"></i> Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionsBody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

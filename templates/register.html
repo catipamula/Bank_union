@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Union Bank - Register{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+{% block main_class %}auth-main{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card glass-card animate-fade-in">
+        <div class="auth-header">
+            <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Union Bank" class="auth-logo">
+            <h2>Create Account</h2>
+            <p>Register for Union Bank online banking</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                <i class="fas fa-{% if category == 'success' %}check-circle{% elif category == 'error' %}times-circle{% else %}info-circle{% endif %}"></i>
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('register') }}" class="bank-form auth-form" novalidate>
+            <div class="form-group">
+                <label for="fullname"><i class="fas fa-user"></i> Full Name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile"><i class="fas fa-phone"></i> Mobile Number</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile" maxlength="10" required>
+            </div>
+            <div class="form-group">
+                <label for="username"><i class="fas fa-at"></i> Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose username" required autocomplete="username">
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <div class="password-field">
+                    <input type="password" id="password" name="password" placeholder="Min 8 characters" required autocomplete="new-password">
+                    <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password</label>
+                <div class="password-field">
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm password" required autocomplete="new-password">
+                    <button type="button" class="password-toggle" data-target="confirm_password" aria-label="Show password">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-user-plus"></i> Register
+            </button>
+        </form>
+
+        <p class="auth-footer-text">
+            Already have an account?
+            <a href="{{ url_for('login') }}" class="auth-link">Login here</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
